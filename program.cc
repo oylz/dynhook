@@ -7,10 +7,16 @@
 #include <cstring>
 #include <unistd.h>
 
-class A {
+class B{
 public:
+    virtual void DoPrint(double v) = 0;
+};
+
+class A: public B{
+private:
 
   int a ,b, c;
+public:
   A(int _a,int _b,int _c):
     a(_a),
     b(_b),
@@ -36,6 +42,16 @@ extern void stub( int u ) {
 }
 
 int main() {
+  getchar();
+  B *a = new A(11, 22, 33);
+  a->DoPrint(44);
+  delete a;
+  getchar();
+
+  B *na = new A(55, 66, 77);
+  na->DoPrint(88);
+  delete na;
+
   while(true) {
     stub(1);
     sleep(1);
