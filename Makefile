@@ -38,7 +38,7 @@ dynhook: libinstr $(SRC) $(HDR) preprocess
 	mv src/*.o bin/
 
 program:
-	$(GPP) -fPIC -O2 ./program.cc -o $(OBJ_FOLDER)/program
+	$(GPP) -O2 ./program.cc -o $(OBJ_FOLDER)/program -lboost_thread
 
 testso:
 	$(GPP) -fPIC -O2 -shared -o $(OBJ_FOLDER)/libtestso.so -fPIC ./test-so.cc

@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <boost/shared_ptr.hpp>
 #include "base.h"
+#include <boost/thread.hpp>
 
 class B{
 public:
@@ -55,7 +56,9 @@ int main() {
 #if 1
     ff_node fn(new ff_node_n("Jason", 5));
     ff f;
-    f.process(fn);
+    boost::thread th(boost::bind(&ff::process, &f, fn));
+    th.join();
+    //f.process(fn);
 #else
     B *aa = new A(11, 22, 33);
     aa->DoPrint(44);
