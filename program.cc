@@ -6,6 +6,8 @@
 #include <errno.h>
 #include <cstring>
 #include <unistd.h>
+#include <boost/shared_ptr.hpp>
+#include "base.h"
 
 class B{
 public:
@@ -41,8 +43,26 @@ extern void stub( int u ) {
   }
 }
 
+    void ff::process(const ff_node &fn){
+        fprintf(stderr, "this:%lx, fn.addr:%lx, fn.get().addr:%lx, fn:(%s, %d)\n", this, &fn, fn.get(), fn->name_.c_str(), fn->age_);
+    }
+    void ff::process(const std::string &str, uint64_t num, const ff_node &fn, char chr){
+        fprintf(stderr, "this:%lx, str.addr:%lx, num:%lx, fn.addr:%lx, fn.get().addr:%lx, fn:(%s, %d), chr:%x\n", this, &str, num, &fn, fn.get(), fn->name_.c_str(), fn->age_, chr);
+    }
+
 int main() {
   getchar();
+#if 1
+    ff_node fn(new ff_node_n("Jason", 5));
+    ff f;
+    f.process(fn);
+#else
+    B *aa = new A(11, 22, 33);
+    aa->DoPrint(44);
+    delete aa;
+#endif
+  getchar();
+
   B *a = new A(11, 22, 33);
   a->DoPrint(44);
   delete a;
