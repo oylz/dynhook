@@ -16,7 +16,7 @@ NPID=`ps auxf | grep  "\./nydbc"  | grep  "conf/config.ini" | awk '{print $2}'`
 
 
 # class ff_node
-NPID=`ps auxf | grep program | grep -v grep | awk '{print $2}'`
+NPID=`ps auxf | grep main | grep -v grep | awk '{print $2}'`
 ./bin/dynhook --pid $NPID --hook ./libtestso.so@_ZN2ff7processERKN5boost10shared_ptrI9ff_node_nEE:hook_pp:set_pp
 #./bin/dynhook --pid $NPID --hook ./libtestso.so@_ZN1A7DoPrintEd:hooked_ff:set_ff
 
